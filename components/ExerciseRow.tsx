@@ -56,20 +56,31 @@ export const ExerciseRow: React.FC<ExerciseRowProps> = ({ exercise, isLocked, at
           <input type="text" value={exercise.name} onChange={(e) => onUpdate({ name: e.target.value })} className="w-full bg-transparent font-bold text-slate-800 focus:outline-none rounded px-2 py-2" placeholder="Movement Name" />
         </div>
         
+        {/* Category - Now visible on mobile */}
+        <div className="col-span-2 md:col-span-2 px-1">
+          <label className="text-[8px] font-black text-slate-400 uppercase md:hidden mb-1 block">Category</label>
+          <select value={exercise.category} onChange={(e) => onUpdate({ category: e.target.value })} className="w-full text-[10px] font-bold border-none bg-slate-50 rounded focus:outline-none py-1.5 px-2">
+            {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
+        </div>
+
         {/* Sets */}
-        <div className="flex items-center gap-1 px-1 md:col-span-1">
+        <div className="flex flex-col md:flex-row items-center gap-1 px-1 md:col-span-1">
+          <label className="text-[8px] md:hidden font-black text-slate-400 uppercase">Sets</label>
           <input type="number" value={exercise.sets} onChange={(e) => onUpdate({ sets: parseInt(e.target.value) || 0 })} className="w-full text-center border-b border-slate-100 focus:outline-none font-medium py-1" />
-          <span className="text-[8px] md:text-[9px] text-slate-400 font-black uppercase">Sets</span>
+          <span className="hidden md:inline text-[8px] md:text-[9px] text-slate-400 font-black uppercase">Sets</span>
         </div>
 
         {/* Reps */}
-        <div className="flex items-center gap-1 px-1 md:col-span-1">
+        <div className="flex flex-col md:flex-row items-center gap-1 px-1 md:col-span-1">
+          <label className="text-[8px] md:hidden font-black text-slate-400 uppercase">Reps</label>
           <input type="text" value={exercise.reps} onChange={(e) => onUpdate({ reps: e.target.value })} className="w-full text-center border-b border-slate-100 focus:outline-none font-medium py-1" />
-          <span className="text-[8px] md:text-[9px] text-slate-400 font-black uppercase">Reps</span>
+          <span className="hidden md:inline text-[8px] md:text-[9px] text-slate-400 font-black uppercase">Reps</span>
         </div>
 
         {/* % 1RM Intensity */}
-        <div className="flex items-center gap-1 px-1 md:col-span-1">
+        <div className="flex flex-col md:flex-row items-center gap-1 px-1 md:col-span-1">
+          <label className="text-[8px] md:hidden font-black text-blue-400 uppercase">% 1RM</label>
           <input 
             type="number" 
             value={exercise.intensity} 
@@ -77,17 +88,10 @@ export const ExerciseRow: React.FC<ExerciseRowProps> = ({ exercise, isLocked, at
             className="w-full text-center border-b border-blue-200 focus:outline-none font-bold py-1 text-blue-600" 
             placeholder="0"
           />
-          <span className="text-[8px] md:text-[9px] text-blue-400 font-black uppercase whitespace-nowrap">% 1RM</span>
+          <span className="hidden md:inline text-[8px] md:text-[9px] text-blue-400 font-black uppercase whitespace-nowrap">% 1RM</span>
         </div>
 
-        {/* Category */}
-        <div className="hidden md:block md:col-span-2 px-1">
-          <select value={exercise.category} onChange={(e) => onUpdate({ category: e.target.value })} className="w-full text-[10px] font-bold border-none bg-slate-50 rounded focus:outline-none py-1.5">
-            {CATEGORIES.map(c => <option key={c} value={c}>{c}</option>)}
-          </select>
-        </div>
-
-        {/* Rest Time - Moved further back and added label */}
+        {/* Rest Time - Visible on desktop, can consider mobile if space permits */}
         <div className="hidden md:flex items-center gap-2 px-1 md:col-span-3 border-l border-slate-50 pl-4">
           <span className="text-[8px] font-black text-slate-400 uppercase whitespace-nowrap">休息時間</span>
           <input type="text" value={exercise.rest} onChange={(e) => onUpdate({ rest: e.target.value })} className="w-full text-xs border-b border-slate-100 focus:outline-none py-1 font-medium" placeholder="90s" />
@@ -103,7 +107,7 @@ export const ExerciseRow: React.FC<ExerciseRowProps> = ({ exercise, isLocked, at
 
       {/* Info labels below the row */}
       {intensityInfo && (
-        <div className="flex gap-4 px-4 py-1 text-[10px] font-black uppercase">
+        <div className="flex flex-wrap gap-2 md:gap-4 px-4 py-1 text-[10px] font-black uppercase">
           <span className={intensityInfo.effectColor}>強度效能: {intensityInfo.effect}</span>
           {intensityInfo.weight && (
             <span className="text-blue-600">建議重量: {intensityInfo.weight}</span>
