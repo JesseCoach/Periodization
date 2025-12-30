@@ -19,7 +19,6 @@
 
         /* Print Optimization */
         @media print {
-            /* Hide all UI elements not needed in a report */
             aside, 
             header, 
             button, 
@@ -29,7 +28,6 @@
                 display: none !important; 
             }
 
-            /* Reset background and layout */
             body { 
                 background: white !important; 
                 padding: 0 !important;
@@ -44,7 +42,6 @@
             .h-screen { height: auto !important; overflow: visible !important; }
             .overflow-y-auto { overflow: visible !important; height: auto !important; }
             
-            /* Expand the main content to full width */
             main { 
                 padding: 0 !important; 
                 margin: 0 !important; 
@@ -54,7 +51,6 @@
 
             .max-w-7xl { max-width: 100% !important; }
 
-            /* Remove borders and shadows from cards */
             .bg-white { 
                 background: white !important; 
                 border: 1px solid #eee !important;
@@ -63,7 +59,6 @@
                 margin-bottom: 2rem !important;
             }
 
-            /* Make inputs look like regular text */
             input, textarea, select {
                 border: none !important;
                 padding: 0 !important;
@@ -73,16 +68,13 @@
                 font-weight: bold !important;
             }
 
-            /* Ensure page breaks don't cut through cycles */
             .rounded-\[3rem\] {
                 border-radius: 1rem !important;
                 page-break-inside: avoid;
             }
 
-            /* Specific styling for the training day blocks */
             .border-l-2 { border-left: 2px solid #eee !important; }
             
-            /* Ensure the program stats are printed clearly */
             .recharts-responsive-container {
                 page-break-inside: avoid;
             }
